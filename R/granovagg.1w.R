@@ -325,17 +325,18 @@ granovagg.1w <- function(data,
   }
 
   GetSummary <- function(owp) {
-    return(
-      ddply(owp$data, .(group), summarise,
-        group              = unique(group),
-        group.mean         = mean(score),
-        trimmed.mean       = mean(score, trim = 0.2),
-        contrast           = unique(contrast),
-        variance           = var(score),
-        standard.deviation = sd(score),
-        maximum.score      = max(score),
-        group.size         = length(score)
-      )
+      with(owp, {
+        ddply(data, .(group), summarise,
+          group              = unique(group),
+          group.mean         = mean(score),
+          trimmed.mean       = mean(score, trim = 0.2),
+          contrast           = unique(contrast),
+          variance           = var(score),
+          standard.deviation = sd(score),
+          maximum.score      = max(score),
+          group.size         = length(score)
+        )
+      }
     )
   }
 
