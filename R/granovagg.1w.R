@@ -241,7 +241,7 @@ granovagg.1w <- function(data,
 
 
   ammt <- (1/200) * diff(rng.sts)
-  stats.vcj<-jitter(stats.vc, am = ammt)
+  stats.vcj<-jitter(stats.vc, amount = ammt)
     
   #Reordering the stats matrix by the mean of each group
   statsro<-stats[order(stats[,4]),]
@@ -711,10 +711,10 @@ granovagg.1w <- function(data,
   GroupMeansByContrast <- function(owp) {
     return( 
       geom_point( 
-               aes(
-                 x     = contrast, 
-                 y     = group.mean, 
-                 fill  = factor("Group Means")
+               aes_string(
+                 x     = 'contrast', 
+                 y     = 'group.mean', 
+                 fill  = 'factor("Group Means")'
                ),
                  size  = I(3),
                  shape = 24,
